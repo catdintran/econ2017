@@ -8,7 +8,7 @@ def util_process_pdf_file(pdfPath):
 	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 
 def extract_countryName_year(pdfPath):
-	filename = pdfPath.split('/')[-1].replace('.pdf', '.txt')		
+	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
 	output = util_get_txt_dir() + filename
 	
 	# convert pdf to text file
@@ -31,7 +31,7 @@ def extract_countryName_year(pdfPath):
 					line = line.replace('\'S', '')
 					
                     			fileName = line + '--' + docDate
-					fileName = fileName.replace(' ', '_')
+					fileName = fileName.replace(' ', '_') + '.txt'
             		if i > 4:
                 		break
 			print 'extracted fileName'
