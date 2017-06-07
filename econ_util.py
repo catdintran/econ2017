@@ -13,7 +13,7 @@ def extract_countryName_year(pdfPath):
 	print output
 	print '.' + util_xpdftotext() + ' ' + output
 	# convert pdf to text file
-	subprocess.call('.' + util_xpdftotext() + ' ' + output, shell=True)
+	subprocess.call('.' + util_xpdftotext() + ' ' pdfPath + ' ' + output, shell=True)
 	
 	with open(output, 'rb') as fp:
 		lp = fp.readlines()
