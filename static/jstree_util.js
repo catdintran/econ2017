@@ -1,6 +1,9 @@
 $(document).ready(function(){
-   $(function() {
-        $('#container').jstree({
+   draw_jstree();
+});
+
+function draw_jstree() {
+    $('#container').jstree({
           'core' : {
             'data' : {
               "url" : "/populate_jstree",
@@ -8,5 +11,4 @@ $(document).ready(function(){
             }
           }
         });
-   });
-});
+}
