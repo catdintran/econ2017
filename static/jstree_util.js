@@ -1,6 +1,7 @@
 $(document).ready(function(){
  //  $('#container').jstree();
    draw_jstree();
+   $('.jstree-checkbox').hide();
    $('#checkbox_btn').click(function(){
         show_hide_checkbox($(this));
    });
@@ -23,19 +24,19 @@ function download_checked_items(){
 function collapse_expand_node(data){
    if($(data).text() == 'Expand'){
       $('#container').jstree('open_all');
-      $(data).text() == 'Collapse';
+      $(data).text('Collapse');
    }else{
       $('#container').jstree('close_all');
-      $(data).text() == 'Expand';
+      $(data).text('Expand');
    }
 } 
 function show_hide_checkbox(data){
    if($(data).text() == 'Checkbox'){
-         $(data).text() = 'Hide Checkbox';
+         $(data).text('Hide Checkbox');
          $('.jstree-checkbox').show();
          $('#download_btn').show();
    }else{
-         $(data).text() = 'Checkbox';
+         $(data).text('Checkbox');
          $('.jstree-checkbox').hide();
          $('#download_btn').hide();
    }
