@@ -15,6 +15,7 @@ def util_prepare_nodes():
 		print 'iterating present_dirs'
 		print parentName
 		parentNode = get_jstree_template(parentName, False)
+		print parentNode
 		sub_dirs = get_immediate_subdirectories(dir)
 		if len(sub_dirs) > 0:
 			childNode = prepare_subdirs_node(dir, sub_dirs)
