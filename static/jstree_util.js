@@ -1,4 +1,5 @@
 $(document).ready(function(){
+   $('#container').jstree();
    draw_jstree();
 });
 
