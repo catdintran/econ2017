@@ -19,6 +19,7 @@ def upload():
   for f in uploaded_files:
     filename = secure_filename(f.filename)
     f.save(util_get_pdf_dir() + filename)
+    util_process_pdf_file(util_get_pdf_dir() + filename)
   return render_template('index.html',version=randint(0,9999))  
 
 @app.route('/populate_jstree')
