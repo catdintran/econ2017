@@ -1,5 +1,5 @@
 $(document).ready(function(){
-   $('#container').jstree();
+ //  $('#container').jstree();
    draw_jstree();
 });
 
@@ -15,7 +15,14 @@ function draw_jstree() {
         }
       
    })
-   $('#container').jstree(true).settings.core.data = data;
+   $('#container').jstree({
+      'core' : {
+      'data' : {
+         [data]
+      }
+    }
+      
+   });
    /*
    $('#container').jstree(true).refresh();
     $('#container').jstree({
