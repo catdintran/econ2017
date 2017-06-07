@@ -4,6 +4,10 @@ import subprocess
 
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
+	util_get_pdf_dir()
+	util_get_txt_dir()
+	util_get_html_dir()
+	util_get_parsed_dir()
 	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
 	print present_dirs
 	for dir in present_dirs:
