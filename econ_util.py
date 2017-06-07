@@ -10,6 +10,8 @@ def util_process_pdf_file(pdfPath):
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
 	output = util_get_txt_dir() + filename
+	print output
+	print '.' + util_xpdftotext() + ' ' + output
 	# convert pdf to text file
 	subprocess.call('.' + util_xpdftotext() + ' ' + output, shell=True)
 	
