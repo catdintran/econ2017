@@ -20,7 +20,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 	print allFiles
 	
 	for file in allFiles:
-		filePath = parentPath+file
+		filePath = parentPath+'/'+file
    		print file
 		if os.path.isdir(filePath):
 			print file +' is a dir'
