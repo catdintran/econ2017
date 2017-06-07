@@ -11,8 +11,9 @@ function draw_jstree() {
        dataType: "json",
        success: function(response){                    
             data = response;
+            console.log(data);
         }
-      console.log(data)
+      
    })
    $('#container').jstree(true).settings.core.data = data;
    /*
