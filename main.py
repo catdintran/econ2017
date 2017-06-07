@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from werkzeug import secure_filename
 from econ_util import *
 from random import randint
-print(randint(0,9))
+
 app = Flask(__name__)
 
 
