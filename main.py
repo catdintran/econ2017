@@ -12,7 +12,7 @@ def index():
   v=randint(0,9)
   return render_template('index.html',version=v)  
 
-@app.route('/upload')
+@app.route('/upload', methods=['POST'])
 def upload():
   uploaded_files = request.files.getlist("file[]")
   print uploaded_files
