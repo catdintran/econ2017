@@ -1,7 +1,7 @@
 $(document).ready(function(){
  //  $('#container').jstree();
    draw_jstree();
-   $('.jstree-checkbox').hide();
+   
    $('#checkbox_btn').click(function(){
         show_hide_checkbox($(this));
    });
@@ -54,5 +54,5 @@ function draw_jstree() {
           },
           "plugins" : ["checkbox"]
         });
-  
+    $('.jstree-checkbox').hide();
 }
