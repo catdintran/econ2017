@@ -49,7 +49,7 @@ def get_jstree_template(rootName, stateBool):
 		"id" : rootName,
               "text" : rootName,
               "state" : {"opened" : stateBool },
-		"icon" : "glyphicon glyphicon-flash",
+		"icon" : "static/folder_icon.png",
               "children" : []
 	}
 
