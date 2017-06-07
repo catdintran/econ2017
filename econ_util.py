@@ -12,6 +12,8 @@ def util_prepare_nodes():
 	print present_dirs
 	for dir in present_dirs:
 		parentName = dir.split('/')[-1]
+		print 'iterating present_dirs'
+		print parentName
 		parentNode = get_jstree_template(parentName, False)
 		sub_dirs = get_immediate_subdirectories(dir)
 		if len(sub_dirs) > 0:
