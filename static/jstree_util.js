@@ -5,26 +5,7 @@ $(document).ready(function(){
 
 function draw_jstree() {
 //   alert('in draw_jstree()')
-   var data;
-   $.ajax({       
-       url: "/populate_jstree",             
-       dataType: "json",
-       success: function(response){                    
-            data = response;
-            console.log(data);
-        }
-      
-   })
-   $('#container').jstree({
-      'core' : {
-      'data' : {
-         [data]
-      }
-    }
-      
-   });
-   /*
-   $('#container').jstree(true).refresh();
+   
     $('#container').jstree({
           'core' : {
             'data' : {
@@ -33,5 +14,5 @@ function draw_jstree() {
             }
           }
         });
-  */
+  
 }
