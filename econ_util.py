@@ -32,6 +32,13 @@ def util_get_tmp_dir():
         directory = check_if_not_exist('/home/catdt_datascience/app/saved_data/tmp/')
 	return directory
 
+def util_get_save_data_dir():
+        directory = check_if_not_exist('/home/catdt_datascience/app/saved_data/')
+	return directory
+def get_immediate_subdirectories(a_dir):
+    return [name for name in os.listdir(a_dir)
+            if os.path.isdir(os.path.join(a_dir, name))]
+
 def check_if_not_exist(directory):
 	if not os.path.exists(directory):
                 os.makedirs(directory)
