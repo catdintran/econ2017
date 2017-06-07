@@ -22,6 +22,13 @@ def upload():
     util_process_pdf_file(util_get_pdf_dir() + filename)
   return render_template('index.html',version=randint(0,9999))  
 
+@app.route('/download', methods=['POST'])
+def download():
+    idList = request.form
+    print idList
+    print type(idList)
+    return render_template('index.html',version=randint(0,9999))
+  
 @app.route('/populate_jstree')
 def populate_jstree():
   print 'calling /populate_jstree'
