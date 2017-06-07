@@ -8,27 +8,23 @@ def util_prepare_nodes():
 	util_get_txt_dir()
 	util_get_html_dir()
 	util_get_parsed_dir()
-	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
-	print present_dirs
-	for dir in present_dirs:
-		parentName = dir.split('/')[-1]
-		print 'iterating present_dirs'
-		print parentName
-		parentNode = get_jstree_template(parentName, False)
-		print parentNode
-		sub_dirs = get_immediate_subdirectories(dir)
-		if len(sub_dirs) > 0:
-			childNode = prepare_subdirs_node(dir, sub_dirs)
-			parentNode['children'].append(childNode)
-			print childNode
-		else:
-			fileArray = [dir + f for f in os.listdir(dir)]
-			childNode = get_children_Node(fileArray)
-			parentNode['children'].append(childNode)
-			print childNode
-		rootNode['children'].append(parentNode)
+	rootNode = prepare_subdirs_node(rootNode, util_get_save_data_dir())
 	return rootNode
-			
+
+def get_all_dir_and_file(rootnode, parentPath):
+	(path, parentname) = os.path.split(parentPath) 
+	allFiles = os.listdir(parentPath)
+	for file in allFiles:
+   		if os.path.isdir(file):
+			parentNode = get_jstree_template(file, False)
+			get_all_dir_and_file(parentNode, parentPath+'/'+file)
+		if os.path.isfile(file):
+			node = get_jstree_template(file, False)
+			node['id'] = parentPath+'/'+file
+			rootNode['children'].append(node)
+	print rootNode
+	return rootNode
+
 def prepare_subdirs_node(path, sub_dirs):
 	sub_dirs = [path+dir for dir in sub_dirs]
 	nodeList = []
