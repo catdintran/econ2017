@@ -32,7 +32,9 @@ def extract_countryName_year(pdfPath):
 					
                     			fileName = line + '--' + docDate
             		if i > 4:
-                		break	
+                		break
+			print 'extracted fileName'
+			print fileName
 	return output, fileName
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
