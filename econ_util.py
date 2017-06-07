@@ -14,22 +14,23 @@ def util_prepare_nodes():
 
 def get_all_dir_and_file(rootNode, parentPath):
 	(path, parentname) = os.path.split(parentPath) 
-	
+	print 'we are in %s now' % parentPath
 	allFiles = os.listdir(parentPath)
 	print 'get all files within saved_data'
 	print allFiles
-	print type(allFiles)
+	
 	for file in allFiles:
-		file = parentPath+'/'+file
+		filePath = parentPath+file
    		print file
 		if os.path.isdir(file):
 			print file +' is a dir'
+			
 			parentNode = get_jstree_template(file, False)
-			get_all_dir_and_file(parentNode, file)
+			get_all_dir_and_file(parentNode, filePath)
 		if os.path.isfile(file):
 			print file +' is a file'
 			node = get_jstree_template(file, False)
-			node['id'] = parentPath+'/'+file
+			node['id'] = parentPath+file
 			rootNode['children'].append(node)
 	print rootNode
 	return rootNode
