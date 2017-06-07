@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 function download_checked_items(){
      idList = $('.jstree-clicked').map(function(){
-                    return this.id
+                    return this.id.replace('_anchor', '');
              }).toArray();
      console.log(idList);
      $('<form>', {
