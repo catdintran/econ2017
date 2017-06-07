@@ -11,23 +11,31 @@ def util_prepare_nodes():
 	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
 	print present_dirs
 	for dir in present_dirs:
+		parentName = dir.split('/')[-1]
+		parentNode = get_jstree_template(parentName, False)
 		sub_dirs = get_immediate_subdirectories(dir)
 		if len(sub_dirs) > 0:
 			childNode = prepare_subdirs_node(dir, sub_dirs)
+			parentNode['children'] = childNode
 			print childNode
 		else:
 			fileArray = [dir + f for f in os.listdir(dir)]
 			childNode = get_children_Node(fileArray)
+			parentNode['children'] = childNode
 			print childNode
+		rootNode['children'] = parentNode
 	return rootNode
 			
 def prepare_subdirs_node(path, sub_dirs):
 	sub_dirs = [path+dir for dir in sub_dirs]
+	nodeList = []
 	for dir in sub_dirs:
 		dirName = dir.split('/')[-1]
 		fileArray = [dir + f for f in os.listdir(dir)]
 		parentNode = get_jstree_template(dirName, False)
 		parentNode['children'] = get_children_Node(fileArray)
+		nodeList.append(parentNode)
+	return nodeList
 		
 def get_children_Node(fileArray):
 	nodeList = []
