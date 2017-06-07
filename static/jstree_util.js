@@ -1,11 +1,8 @@
 $(document).ready(function(){
  //  $('#container').jstree();
-  
-   $(function(){
+   
      draw_jstree(); 
-     $('.jstree-checkbox').hide();
-       
-   });
+           
    $('#checkbox_btn').click(function(){
         show_hide_checkbox($(this));
    });
@@ -15,7 +12,7 @@ $(document).ready(function(){
    $('#download_btn').click(function(){
         download_checked_items();
    });
- 
+    $('.jstree-checkbox').hide();
 });
 
 function download_checked_items(){
