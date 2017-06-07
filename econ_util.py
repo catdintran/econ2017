@@ -35,6 +35,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 			print file +' is a file'
 			node = get_jstree_template(file, False)
 			node['id'] = parentPath+file
+			node['icon'] = None
 			rootNode['children'].append(node)
 	print rootNode
 	return rootNode
