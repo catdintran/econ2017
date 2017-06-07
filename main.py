@@ -16,8 +16,12 @@ def upload():
   print uploaded_files
   for f in uploaded_files:
     print type(f)
-  return render_template('index.html') 
-
+  return uploaded_files
+@app.route('/populate_jstree')
+def populate_jstree():
+  rootNode = util_prepare_rootNode()
+  
+  
 if __name__ == '__main__':
   app.run()
 
