@@ -20,6 +20,11 @@ function download_checked_items(){
                     return this.id
              }).toArray();
      console.log(idList);
+     $('<form>', {
+       "id": "idList_form",
+       "html": '<input type="hidden" name="idList" value="' + idList + '" />',
+       "action": '/download'
+     }).appendTo(document.body).submit().remove();
 }
 
 function collapse_expand_node(data){
