@@ -4,6 +4,7 @@ $(document).ready(function(){
 });
 
 function draw_jstree() {
+   alert('in draw_jstree()')
    var data;
    $.ajax({       
        url: "/populate_jstree",             
