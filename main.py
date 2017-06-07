@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from werkzeug import secure_filename
 from econ_util import *
 from random import randint
+import ast
+import os
 
 app = Flask(__name__)
 
@@ -24,13 +26,18 @@ def upload():
 
 @app.route('/download', methods=['POST'])
 def download():
-    idList = request.form.get('idList')
+    idList = ast.literal_eval(request.form.get('idList'))
     print 'calling download'
     print 'calling download'
     print 'calling download'
     print 'calling download'
     print idList
     print type(idList)
+    if len(idList) > 1:
+      util_process_idList(idList)       
+    else:
+      filePath, filename =
+      send_from_directory()
     return render_template('index.html',version=randint(0,9999))
   
 @app.route('/populate_jstree')
