@@ -2,6 +2,35 @@ import os
 import re
 import subprocess
 
+def util_process_pdf_file(pdfPath):
+	(path, pdfname) = os.path.split(pdfPath)
+	originPath, newfileName = extract_countryName_year(pdfPath)
+	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
+
+def extract_countryName_year(pdfPath):
+	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
+	output = util_get_txt_dir() + filename
+	# convert pdf to text file
+	subprocess.call(util_xpdftotext() + ' ' + output, shell=True)
+	
+	with open(output, 'rb') as fp:
+		lp = fp.readlines()
+        	fileName = ''
+        	docDate = ''
+		for i, line in enumerate(lp):
+			if i == 0:
+			   	# print(line.replace('\n', ''))
+				docDate = line.replace('\n', '')
+			if i in range(2, 4) and 'IMF' not in line:
+              			# make sure line is not an empty line
+                		if line.strip():
+					line = line.replace('\n', '')
+					line = line.replace('\'S', '')
+					
+                    			fileName = line + '--' + docDate
+            		if i > 4:
+                		break	
+	return output, fileName
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
 	util_get_pdf_dir()
@@ -34,8 +63,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 		if os.path.isfile(filePath):
 			print file +' is a file'
 			node = get_jstree_template(file, False)
-			node['id'] = parentPath+file
-			node.pop('icon', None)
+			node['id'] = parentPath+file			
 			rootNode['children'].append(node)
 	print rootNode
 	return rootNode
