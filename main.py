@@ -12,7 +12,7 @@ def index():
 
 @app.route('/upload')
 def upload():
-  uploaded_files = flask.request.files.getlist("file[]")
+  uploaded_files = request.files.getlist("file[]")
   print uploaded_files
   for f in uploaded_files:
     print type(f)
