@@ -19,7 +19,7 @@ def upload():
   return uploaded_files
 @app.route('/populate_jstree')
 def populate_jstree():
-  rootNode = util_prepare_rootNode()
+  rootNode = util_prepare_nodes()
   
   
 if __name__ == '__main__':
