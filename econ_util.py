@@ -22,12 +22,12 @@ def get_all_dir_and_file(rootNode, parentPath):
 	for file in allFiles:
 		filePath = parentPath+file
    		print file
-		if os.path.isdir(file):
+		if os.path.isdir(filePath):
 			print file +' is a dir'
 			
 			parentNode = get_jstree_template(file, False)
 			get_all_dir_and_file(parentNode, filePath)
-		if os.path.isfile(file):
+		if os.path.isfile(filePath):
 			print file +' is a file'
 			node = get_jstree_template(file, False)
 			node['id'] = parentPath+file
