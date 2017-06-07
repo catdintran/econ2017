@@ -4,7 +4,6 @@ import subprocess
 
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
-	print rootNode
 	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
 	print present_dirs
 	for dir in present_dirs:
@@ -16,6 +15,7 @@ def util_prepare_nodes():
 			fileArray = [dir + f for f in os.listdir(dir)]
 			childNode = get_children_Node(fileArray)
 			print childNode
+	return rootNode
 			
 def prepare_subdirs_node(path, sub_dirs):
 	sub_dirs = [path+dir for dir in sub_dirs]
