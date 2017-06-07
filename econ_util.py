@@ -27,6 +27,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 			
 			parentNode = get_jstree_template(file, False)
 			get_all_dir_and_file(parentNode, filePath)
+			rootNode['children'].append(parentNode)
 		if os.path.isfile(filePath):
 			print file +' is a file'
 			node = get_jstree_template(file, False)
