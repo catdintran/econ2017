@@ -4,7 +4,7 @@ $(document).ready(function(){
 });
 
 function draw_jstree() {
-   alert('in draw_jstree()')
+//   alert('in draw_jstree()')
    var data;
    $.ajax({       
        url: "/populate_jstree",             
@@ -12,6 +12,7 @@ function draw_jstree() {
        success: function(response){                    
             data = response;
         }
+      console.log(data)
    })
    $('#container').jstree(true).settings.core.data = data;
    /*
