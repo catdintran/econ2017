@@ -2,7 +2,49 @@ import os
 import re
 import subprocess
 
+def util_prepare_nodes():
+	rootNode = prepare_rootNode()
+	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
+	for dir in present_dirs:
+		sub_dirs = get_immediate_subdirectories(dir)
+		if len(sub_dirs) > 0:
+			childNode = prepare_subdirs_node(dir, sub_dirs)
+			print childNode
+		else:
+			fileArray = [dir + f for f in os.listdir(dir)]
+			childNode = get_children_Node(fileArray)
+			print childNode
+			
+def prepare_subdirs_node(path, sub_dirs):
+	sub_dirs = [path+dir for dir in sub_dirs]
+	for dir in sub_dirs:
+		dirName = dir.split('/')[-1]
+		fileArray = [dir + f for f in os.listdir(dir)]
+		parentNode = get_jstree_template(dirName, False)
+		parentNode['children'] = get_children_Node(fileArray)
+		
+def get_children_Node(fileArray):
+	nodeList = []
+	for f in fileArray:
+		(filepath, filename) = os.path.split(f)
+		node = get_jstree_template(filename, False)
+		node['id'] = f
+		nodeList.append(node)
+	return nodeList
 
+def prepare_rootNode():
+	rootNode = get_jstree_template("root", True)
+	rootNode['icon'] = "//jstree.com/tree.png"
+	return rootNode	
+
+def get_jstree_template(rootName, stateBool)
+	return {
+		"id" : rootName,
+              "text" : rootName,
+              "state" : {"opened" : stateBool },
+		"icon" : "glyphicon glyphicon-flash",
+              "children" : []
+	}
 
 def util_xpdftohtml():
 	return '/home/catdt_datascience/app/xpdfbin-linux-3.04/bin64/pdftohtml'
