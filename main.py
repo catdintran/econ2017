@@ -25,6 +25,10 @@ def upload():
 @app.route('/download', methods=['POST'])
 def download():
     idList = request.form
+    print 'calling download'
+    print 'calling download'
+    print 'calling download'
+    print 'calling download'
     print idList
     print type(idList)
     return render_template('index.html',version=randint(0,9999))
