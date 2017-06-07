@@ -13,18 +13,21 @@ def util_prepare_nodes():
 	return rootNode
 
 def get_all_dir_and_file(rootNode, parentPath):
-	(path, parentname) = os.path.split(parentPath) 
+	'''
+	recursively pass rootNode and rootPath to param
+	retrieve all dirs and files within rootPath to generate jstree node
+	'''
+#	(path, parentname) = os.path.split(parentPath) 
 	print 'we are in %s now' % parentPath
 	allFiles = os.listdir(parentPath)
-	print 'get all files within saved_data'
+	print 'get all files within %s' % parentPath
 	print allFiles
 	
 	for file in allFiles:
 		filePath = parentPath+'/'+file
    		print file
 		if os.path.isdir(filePath):
-			print file +' is a dir'
-			
+			print file +' is a dir'			
 			parentNode = get_jstree_template(file, False)
 			get_all_dir_and_file(parentNode, filePath)
 			rootNode['children'].append(parentNode)
@@ -35,27 +38,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 			rootNode['children'].append(node)
 	print rootNode
 	return rootNode
-'''
-def prepare_subdirs_node(path, sub_dirs):
-	sub_dirs = [path+dir for dir in sub_dirs]
-	nodeList = []
-	for dir in sub_dirs:
-		dirName = dir.split('/')[-1]
-		fileArray = [dir + f for f in os.listdir(dir)]
-		parentNode = get_jstree_template(dirName, False)
-		parentNode['children'] = get_children_Node(fileArray)
-		nodeList.append(parentNode)
-	return nodeList
-		
-def get_children_Node(fileArray):
-	nodeList = []
-	for f in fileArray:
-		(filepath, filename) = os.path.split(f)
-		node = get_jstree_template(filename, False)
-		node['id'] = f
-		nodeList.append(node)
-	return nodeList
-'''
+
 def prepare_rootNode():
 	rootNode = get_jstree_template("root", True)
 	rootNode['icon'] = "//jstree.com/tree.png"
