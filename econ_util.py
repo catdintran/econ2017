@@ -8,7 +8,7 @@ def util_process_pdf_file(pdfPath):
 	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 
 def extract_countryName_year(pdfPath):
-	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
+	filename = pdfPath.split('/')[-1].replace('.pdf', '.txt')		
 	output = util_get_txt_dir() + filename
 	
 	# convert pdf to text file
