@@ -15,10 +15,11 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
   uploaded_files = request.files.getlist("file[]")
-  print uploaded_files
+  
   for f in uploaded_files:
-    print type(f)
-  return uploaded_files
+    filename = secure_filename(f.filename)
+    f.save(util_get_pdf_dir() + filename)
+  return render_template('index.html',version=v)  
 
 @app.route('/populate_jstree')
 def populate_jstree():
