@@ -4,7 +4,9 @@ import subprocess
 
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
+	print rootNode
 	present_dirs = [util_get_save_data_dir()+ dir for dir in  get_immediate_subdirectories(util_get_save_data_dir())]
+	print present_dirs
 	for dir in present_dirs:
 		sub_dirs = get_immediate_subdirectories(dir)
 		if len(sub_dirs) > 0:
