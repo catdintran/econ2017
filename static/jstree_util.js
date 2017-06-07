@@ -21,6 +21,7 @@ function download_checked_items(){
              }).toArray();
      console.log(idList);
      $('<form>', {
+       "method": "POST",
        "id": "idList_form",
        "html": '<input type="hidden" name="idList" value="' + idList + '" />',
        "action": '/download'
