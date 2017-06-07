@@ -10,8 +10,7 @@ def util_process_pdf_file(pdfPath):
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
 	output = util_get_txt_dir() + filename
-	print output
-	print '.' + util_xpdftotext() + ' ' + output
+	
 	# convert pdf to text file
 	subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output, shell=True)
 	
@@ -20,6 +19,8 @@ def extract_countryName_year(pdfPath):
         	fileName = ''
         	docDate = ''
 		for i, line in enumerate(lp):
+			print 'iterate over txt file'
+			print line
 			if i == 0:
 			   	# print(line.replace('\n', ''))
 				docDate = line.replace('\n', '')
