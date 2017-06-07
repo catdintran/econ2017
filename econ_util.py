@@ -8,7 +8,7 @@ def util_prepare_nodes():
 	util_get_txt_dir()
 	util_get_html_dir()
 	util_get_parsed_dir()
-	rootNode = prepare_subdirs_node(rootNode, util_get_save_data_dir())
+	rootNode = get_all_dir_and_file(rootNode, util_get_save_data_dir())
 	return rootNode
 
 def get_all_dir_and_file(rootnode, parentPath):
