@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from werkzeug import secure_filename
 from econ_util import *
 from random import randint
@@ -24,7 +24,7 @@ def upload():
 def populate_jstree():
   print 'calling /populate_jstree'
   rootNode = util_prepare_nodes()
-  return render_template('index.html') 
+  return jsonify(rootNode)
   
 if __name__ == '__main__':
   app.run()
