@@ -1,6 +1,7 @@
 $(document).ready(function(){
  //  $('#container').jstree();
    draw_jstree();
+ 
 });
 
 function draw_jstree() {
@@ -12,7 +13,8 @@ function draw_jstree() {
               "url" : "/populate_jstree",
               "dataType" : "json" // needed only if you do not supply JSON headers
             }
-          }
+          },
+          "plugins" : ["checkbox"]
         });
   
 }
