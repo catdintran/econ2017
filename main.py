@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request
 from werkzeug import secure_filename
 from econ_util import *
-
+from random import randint
+print(randint(0,9))
 app = Flask(__name__)
 
 
 
 @app.route('/')
 def index():
-  return render_template('index.html')  
+  v=randint(0,9)
+  return render_template('index.html',version=v)  
 
 @app.route('/upload')
 def upload():
