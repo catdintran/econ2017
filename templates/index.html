@@ -6,15 +6,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script src="static/jstree_util.js?version={{version}}"></script>
   
-<script>
-  $('.jstree-checkbox').hide();  
-</script>  
+ 
 </head>  
   
 <body>
   <button id="collapse_expand_btn">Expand</button>
-  <button id="checkbox_btn">Checkbox</button>
-  <button id="download_btn" style="display:none;">Download</button>
+  <button id="checkbox_btn">Hide Checkbox</button>
+  <button id="download_btn">Download</button>
 <div id="container"></div>
   
 <form action="/upload" method="post" enctype="multipart/form-data">
