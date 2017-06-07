@@ -19,10 +19,13 @@ def get_all_dir_and_file(rootNode, parentPath):
 	print 'get all files within saved_data'
 	print allFiles
 	for file in allFiles:
+		print file
    		if os.path.isdir(file):
+			print file +' is a dir'
 			parentNode = get_jstree_template(file, False)
 			get_all_dir_and_file(parentNode, parentPath+'/'+file)
 		if os.path.isfile(file):
+			print file +' is a file'
 			node = get_jstree_template(file, False)
 			node['id'] = parentPath+'/'+file
 			rootNode['children'].append(node)
