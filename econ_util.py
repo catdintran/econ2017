@@ -18,14 +18,14 @@ def util_prepare_nodes():
 		sub_dirs = get_immediate_subdirectories(dir)
 		if len(sub_dirs) > 0:
 			childNode = prepare_subdirs_node(dir, sub_dirs)
-			parentNode['children'] = childNode
+			parentNode['children'].append(childNode)
 			print childNode
 		else:
 			fileArray = [dir + f for f in os.listdir(dir)]
 			childNode = get_children_Node(fileArray)
-			parentNode['children'] = childNode
+			parentNode['children'].append(childNode)
 			print childNode
-		rootNode['children'] = parentNode
+		rootNode['children'].append(parentNode)
 	return rootNode
 			
 def prepare_subdirs_node(path, sub_dirs):
