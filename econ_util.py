@@ -24,7 +24,7 @@ def get_all_dir_and_file(rootnode, parentPath):
 			rootNode['children'].append(node)
 	print rootNode
 	return rootNode
-
+'''
 def prepare_subdirs_node(path, sub_dirs):
 	sub_dirs = [path+dir for dir in sub_dirs]
 	nodeList = []
@@ -44,7 +44,7 @@ def get_children_Node(fileArray):
 		node['id'] = f
 		nodeList.append(node)
 	return nodeList
-
+'''
 def prepare_rootNode():
 	rootNode = get_jstree_template("root", True)
 	rootNode['icon'] = "//jstree.com/tree.png"
