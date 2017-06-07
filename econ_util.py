@@ -37,7 +37,7 @@ def prepare_rootNode():
 	rootNode['icon'] = "//jstree.com/tree.png"
 	return rootNode	
 
-def get_jstree_template(rootName, stateBool)
+def get_jstree_template(rootName, stateBool):
 	return {
 		"id" : rootName,
               "text" : rootName,
