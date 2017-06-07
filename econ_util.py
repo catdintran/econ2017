@@ -8,12 +8,16 @@ def util_prepare_nodes():
 	util_get_txt_dir()
 	util_get_html_dir()
 	util_get_parsed_dir()
+	
 	rootNode = get_all_dir_and_file(rootNode, util_get_save_data_dir())
 	return rootNode
 
-def get_all_dir_and_file(rootnode, parentPath):
+def get_all_dir_and_file(rootNode, parentPath):
 	(path, parentname) = os.path.split(parentPath) 
+	
 	allFiles = os.listdir(parentPath)
+	print 'get all files within saved_data'
+	print allFiles
 	for file in allFiles:
    		if os.path.isdir(file):
 			parentNode = get_jstree_template(file, False)
