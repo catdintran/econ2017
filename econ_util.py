@@ -31,6 +31,7 @@ def extract_countryName_year(pdfPath):
 					line = line.replace('\'S', '')
 					
                     			fileName = line + '--' + docDate
+					fileName = fileName.replace(' ', '_')
             		if i > 4:
                 		break
 			print 'extracted fileName'
