@@ -64,11 +64,12 @@ def get_all_dir_and_file(rootNode, parentPath):
 		if os.path.isdir(filePath):
 			print file +' is a dir'			
 			parentNode = get_jstree_template(file, False)
+			parentNode['icon'] = "static/folder_icon.png"
 			get_all_dir_and_file(parentNode, filePath)
 			rootNode['children'].append(parentNode)
 		if os.path.isfile(filePath):
 			print file +' is a file'
-			node = get_jstree_template(file, False)
+			node = get_jstree_template(file, False)			
 			node['id'] = filePath			
 			rootNode['children'].append(node)
 	print rootNode
@@ -84,7 +85,6 @@ def get_jstree_template(rootName, stateBool):
 		"id" : rootName,
               "text" : rootName,
               "state" : {"opened" : stateBool },
-		"icon" : "static/folder_icon.png",
               "children" : []
 	}
 
