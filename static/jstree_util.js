@@ -24,10 +24,13 @@ $(document).ready(function(){
 });
 
 function download_checked_items(){
-     idList = $('.jstree-clicked').map(function(){
-                    return this.id.replace('_anchor', '');
+     selected = $('#container').jstree('get_selected')
+     idList = $(selected).map(function(){
+                    if(this.includes('/')){
+                      return this
+                    } 
              }).toArray();
-     console.log(idList);
+//     console.log(idList);
      $('<form>', {
        "method": "POST",
        "id": "idList_form",
