@@ -94,7 +94,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 	retrieve all dirs and files within rootPath to generate jstree node
 	'''
 #	print 'we are in %s now' % parentPath
-	allFiles = os.listdir(parentPath)
+	allFiles = os.listdir(parentPath).sort(key=natural_keys)
 #	print 'get all files within %s' % parentPath
 	
 	for file in allFiles:
@@ -164,3 +164,14 @@ def check_if_not_exist(directory):
 	if not os.path.exists(directory):
                 os.makedirs(directory)
 	return directory
+
+def atoi(text):
+    	return int(text) if text.isdigit() else text
+
+def natural_keys(text):
+    	'''
+    	alist.sort(key=natural_keys) sorts in human order
+    	http://nedbatchelder.com/blog/200712/human_sorting.html
+    	(See Toothy's implementation in the comments)
+    	'''
+	return [ atoi(c) for c in re.split('(\d+)', text) ]
