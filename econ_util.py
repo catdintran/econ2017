@@ -87,28 +87,27 @@ def get_all_dir_and_file(rootNode, parentPath):
 	recursively pass rootNode and rootPath to param
 	retrieve all dirs and files within rootPath to generate jstree node
 	'''
-#	(path, parentname) = os.path.split(parentPath) 
-	print 'we are in %s now' % parentPath
+#	print 'we are in %s now' % parentPath
 	allFiles = os.listdir(parentPath)
-	print 'get all files within %s' % parentPath
-	print allFiles
+#	print 'get all files within %s' % parentPath
+#	print allFiles
 	
 	for file in allFiles:
 		filePath = parentPath+'/'+file
    		print file
 		if os.path.isdir(filePath):
-			print file +' is a dir'			
+		#	print file +' is a dir'			
 			parentNode = get_jstree_template(file, False)
 			parentNode['icon'] = "static/folder_icon.png"
 			get_all_dir_and_file(parentNode, filePath)
 			rootNode['children'].append(parentNode)
 		if os.path.isfile(filePath):
-			print file +' is a file'
+		#	print file +' is a file'
 			node = get_jstree_template(file, False)			
 			node['id'] = filePath		
 			node['icon'] = "static/file_icon.png"
 			rootNode['children'].append(node)
-	print rootNode
+#	print rootNode
 	return rootNode
 
 def prepare_rootNode():
