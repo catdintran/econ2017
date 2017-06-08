@@ -4,6 +4,13 @@ import subprocess
 from itertools import islice
 
 def util_process_pdf_file(pdfPath):
+	'''
+	1/save pdf file to correct folder
+	2/xpdf to txt to txt/
+	3/extract countryName--year to use as new folder name
+	4/process xpdf to html
+	5/extract pageNum and save new files to parsed/
+	'''
 	(path, pdfname) = os.path.split(pdfPath)
 	originPath, newfileName = extract_countryName_year(pdfPath)
 	# change txt file to newfilename
@@ -20,6 +27,7 @@ def process_pdftohtml(pdfPath):
 	
 	# convert pdf to html folder
 	subprocess.call(util_xpdftohtml() + ' ' + pdfPath + ' ' + output, shell=True)
+	# get *.html from new input file and process with page matching fileName
 	htmlList = [f for f in os.listdir(output) if '.html' in f]
 	for html in htmlList:
 		parse_page_number(output + '/' + html)
@@ -36,13 +44,14 @@ def parse_page_number(htmlPath):
 	subprocess.call('cp ' + htmlPath + ' ' + output+'/'+'%s_parsed_page%s.html'%(folderName,pageNum), shell=True)
 	
 def extract_page_number(htmlPath):
-	#a = islice(reversed(open(f).readlines()), 1,3)
+	'''
+	pageNum is stored in last 3 lines in html file
+	reversed open file to read from bottom
+	using islice to get last 3 lines for memory optimization
+	'''
 	lines = islice(reversed(open(htmlPath, 'rb').readlines()), 1,3)
-	for l in lines:
-		
-             	num = re.findall('color:#000000;">(\d+ ?)</span>', l)
-            	print num
-		print type(num)
+	for l in lines:		
+             	num = re.findall('color:#000000;">(\d+ ?)</span>', l)            	
 		if num:		
      			return num[0].split()[0]
 	     	else:
