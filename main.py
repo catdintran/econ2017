@@ -36,8 +36,9 @@ def download():
     if len(idList) > 1:
       util_process_idList(idList)       
     else:
-      filePath, filename =
-      send_from_directory()
+       print 'testing'
+#      filePath, filename = 
+#      send_from_directory()
     return render_template('index.html',version=randint(0,9999))
   
 @app.route('/populate_jstree')
