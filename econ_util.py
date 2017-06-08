@@ -1,6 +1,7 @@
 import os
 import re
 import subprocess
+from itertools import islice
 
 def util_process_pdf_file(pdfPath):
 	(path, pdfname) = os.path.split(pdfPath)
@@ -19,8 +20,24 @@ def process_pdftohtml(pdfPath):
 	
 	# convert pdf to html folder
 	subprocess.call(util_xpdftohtml() + ' ' + pdfPath + ' ' + output, shell=True)
+	htmlList = [f for f in os.listdir(output) if '.html' in f]
+	for html in htmlList:
+		parse_page_number(output + '/' + html)
+
+def parse_page_number(htmlPath):
+	folderName = htmlPath.split('/')[-2]	
+	output = util_get_parsed_dir() + folderName 
+	pageNum = extract_page_number(htmlPath)
+	subprocess.call('cp ' htmlPath + ' ' + output+'/'+'%s_parsed_page%s.html'%(folderName,pageNum), shell=True)
 	
-	
+def extract_page_number(htmlPath):
+	lines = islice(reversed(open(f, errors='replace').readlines(), 1,4)
+	for l in a:
+             num = re.findall('color:#000000;">(\d+ ?)</span>', l)
+             if num:
+     		return num[0].split()
+	     else:
+		return ''     
 	
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
