@@ -34,15 +34,17 @@ def parse_page_number(htmlPath):
 	
 def extract_page_number(htmlPath):
 	#a = islice(reversed(open(f).readlines()), 1,3)
-	lines = islice(reversed(open(htmlPath, 'rb').readlines()), 1,4)
+	lines = islice(reversed(open(htmlPath, 'rb').readlines()), 1,3)
 	for l in lines:
+		
              	num = re.findall('color:#000000;">(\d+ ?)</span>', l)
             	print num
 		print type(num)
 		if num:		
      			return num[0].split()
 	     	else:
-			return ''     
+			continue
+	return ''
 	
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
