@@ -36,11 +36,13 @@ def extract_page_number(htmlPath):
 	#a = islice(reversed(open(f).readlines()), 1,3)
 	lines = islice(reversed(open(htmlPath, 'rb').readlines()), 1,4)
 	for l in lines:
-             num = re.findall('color:#000000;">(\d+ ?)</span>', l)
-             if num:
-     		return num[0].split()
-	     else:
-		return ''     
+             	num = re.findall('color:#000000;">(\d+ ?)</span>', l)
+            	print num
+		print type(num)
+		if num:		
+     			return num[0].split()
+	     	else:
+			return ''     
 	
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
@@ -69,8 +71,7 @@ def extract_countryName_year(pdfPath):
 					fileName = fileName.replace(' ', '_') + '.txt'
             		if i > 4:
                 		break
-			print 'extracted fileName'
-			print fileName
+						
 	return output, fileName
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
@@ -90,19 +91,15 @@ def get_all_dir_and_file(rootNode, parentPath):
 #	print 'we are in %s now' % parentPath
 	allFiles = os.listdir(parentPath)
 #	print 'get all files within %s' % parentPath
-#	print allFiles
 	
 	for file in allFiles:
 		filePath = parentPath+'/'+file
-   		print file
 		if os.path.isdir(filePath):
-		#	print file +' is a dir'			
 			parentNode = get_jstree_template(file, False)
 			parentNode['icon'] = "static/folder_icon.png"
 			get_all_dir_and_file(parentNode, filePath)
 			rootNode['children'].append(parentNode)
 		if os.path.isfile(filePath):
-		#	print file +' is a file'
 			node = get_jstree_template(file, False)			
 			node['id'] = filePath		
 			node['icon'] = "static/file_icon.png"
