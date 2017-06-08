@@ -26,20 +26,15 @@ def upload():
 
 @app.route('/download', methods=['POST'])
 def download():
-    idList = request.form.get('idList').decode("utf-8").split(',')
-    print 'calling download'
-    print 'calling download'
+    idList = request.form.get('idList').decode("utf-8").split(',')    
     print 'calling download'
     print 'calling download'
     print idList
-    print type(idList)
-
     if len(idList) > 1:
-      util_process_idList(idList)       
+      util_process_idList(idList)
+      return send_from_directory(util_get_tmp_dir(), 'file.zip', as_attachment=True)
     else:      
       filePath, filename = os.path.split(idList[0])
-      print filePath
-      print filename
       return send_from_directory(filePath, filename, as_attachment=True)
     
   
