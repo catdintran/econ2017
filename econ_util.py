@@ -1,7 +1,17 @@
 import os
 import re
 import subprocess
+import zipfile
 from itertools import islice
+
+def util_process_idList(fileList):
+	# clean tmp/ b4 moving files to folder
+	subprocess.call('rm *', shell=True)
+	# mv requested files to tmp/
+	for file in fileList:
+		subprocess.call('mv ' + file + ' ' + util_get_tmp_dir(), shell=True)
+	fileZip = zipfile.ZipFile(util_get_tmp_dir()+'file.zip', 'w')
+	zipdir(util_get_tmp_dir(), fileZip)
 
 def util_process_pdf_file(pdfPath):
 	'''
@@ -187,3 +197,12 @@ def natural_keys(text):
     	(See Toothy's implementation in the comments)
     	'''
 	return [ atoi(c) for c in re.split('(\d+)', text) ]
+
+def zipdir(path, zip):
+    path = os.path.abspath(path)
+    for root, dirs, files in os.walk(path):
+        dest_dir = root.replace(os.path.dirname(path), '', 1)
+        for file in files:
+		if '.zip' not in file:
+            		zip.write(os.path.join(root, file), arcname=os.path.join(dest_dir, file))
+	
