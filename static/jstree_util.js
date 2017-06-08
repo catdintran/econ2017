@@ -19,9 +19,9 @@ $(document).ready(function(){
       $('#processing_icon').show();
       return true;
     })
-    $('.jstree-anchor.jstree-hovered').click(function() {
-       console.log($(this));
-    })
+//    $('.jstree-anchor.jstree-hovered').click(function() {
+//       console.log($(this));
+//    })
  
 });
 
