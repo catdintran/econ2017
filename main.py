@@ -33,15 +33,14 @@ def download():
     print 'calling download'
     print idList
     print type(idList)
-#    idList = ast.literal_eval(idList)
-    print idList
+
     if len(idList) > 1:
       util_process_idList(idList)       
     else:      
       filePath, filename = os.path.split(idList[0])
       print filePath
       print filename
-      return send_from_directory(filePath, filename)
+      return send_from_directory(filePath, filename, as_attachment=True)
     
   
 @app.route('/populate_jstree')
