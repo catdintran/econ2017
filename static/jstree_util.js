@@ -24,12 +24,13 @@ $(document).ready(function(){
 });
 
 function download_checked_items(){
-     selected = $('#container').jstree('get_selected')
-     idList = $(selected).map(function(){
-                    if(this.includes('/')){
-                      return this
+     selected = $('#container').jstree('get_selected');
+     idList = []
+     $(selected).each(function(){
+                    if(this.indexOf('/') != -1){
+                      idList.push(this);
                     } 
-             }).toArray();
+             });
 //     console.log(idList);
      $('<form>', {
        "method": "POST",
