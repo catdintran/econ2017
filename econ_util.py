@@ -31,8 +31,8 @@ def parse_page_number(htmlPath):
 	subprocess.call('cp ' + htmlPath + ' ' + output+'/'+'%s_parsed_page%s.html'%(folderName,pageNum), shell=True)
 	
 def extract_page_number(htmlPath):
-	lines = islice(reversed(open(f, errors='replace').readlines(), 1,4)
-	for l in a:
+	lines = islice(reversed(open(htmlPath, 'rb').readlines(), 1,4)
+	for l in lines:
              num = re.findall('color:#000000;">(\d+ ?)</span>', l)
              if num:
      		return num[0].split()
