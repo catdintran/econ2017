@@ -5,8 +5,23 @@ import subprocess
 def util_process_pdf_file(pdfPath):
 	(path, pdfname) = os.path.split(pdfPath)
 	originPath, newfileName = extract_countryName_year(pdfPath)
+	# change txt file to newfilename
 	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
-
+	# change pdf filename to newfilename
+	newpdfPath = util_get_pdf_dir()+newfileName
+	subprocess.call('mv ' + pdfPath + ' ' + newpdfPath, shell=True)
+	# process pdf file to html/ and parsed/
+	process_pdftohtml(newpdfPath)
+	
+def process_pdftohtml(pdfPath):
+	filename = pdfPath.split('/')[-1].replace('.pdf', '')	
+	output = util_get_html_dir() + filename
+	
+	# convert pdf to html folder
+	subprocess.call(util_xpdftohtml() + ' ' + pdfPath + ' ' + output, shell=True)
+	
+	
+	
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
 	output = util_get_txt_dir() + filename
