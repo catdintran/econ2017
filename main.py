@@ -35,9 +35,10 @@ def download():
     print type(idList)
     if len(idList) > 1:
       util_process_idList(idList)       
-    else:
-      
+    else:      
       filePath, filename = os.path.split(idList[0])
+      print filePath
+      print filename
       return send_from_directory(filePath, filename)
     
   
