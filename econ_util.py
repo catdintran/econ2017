@@ -30,6 +30,9 @@ def parse_page_number(htmlPath):
 	pageNum = extract_page_number(htmlPath)
 	print 'processed %s' % htmlPath
 	print 'pageNum = %s' % pageNum
+	# create a folder inside parsed/ to store new set of html files
+	check_if_not_exist(output)
+	# copy from html/ to parsed/ with new page file name
 	subprocess.call('cp ' + htmlPath + ' ' + output+'/'+'%s_parsed_page%s.html'%(folderName,pageNum), shell=True)
 	
 def extract_page_number(htmlPath):
