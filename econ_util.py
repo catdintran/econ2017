@@ -28,6 +28,8 @@ def parse_page_number(htmlPath):
 	folderName = htmlPath.split('/')[-2]	
 	output = util_get_parsed_dir() + folderName 
 	pageNum = extract_page_number(htmlPath)
+	print 'processed %s' % htmlPath
+	print 'pageNum = %s' % pageNum
 	subprocess.call('cp ' + htmlPath + ' ' + output+'/'+'%s_parsed_page%s.html'%(folderName,pageNum), shell=True)
 	
 def extract_page_number(htmlPath):
