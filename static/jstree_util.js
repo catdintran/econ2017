@@ -13,6 +13,14 @@ $(document).ready(function(){
         download_checked_items();
    });
     $('.jstree-checkbox').hide();
+    
+    // show processing icon when form submit
+    $('#submit_files').submit(function(e){
+      $('#processing_icon').show();
+      return true;
+    })
+ 
+ 
 });
 
 function download_checked_items(){
