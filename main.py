@@ -26,7 +26,7 @@ def upload():
 
 @app.route('/download', methods=['POST'])
 def download():
-    idList = str(request.form.get('idList')).split[',']
+    idList = request.form.get('idList').decode("utf-8")
     print 'calling download'
     print 'calling download'
     print 'calling download'
