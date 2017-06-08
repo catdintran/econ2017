@@ -94,8 +94,10 @@ def get_all_dir_and_file(rootNode, parentPath):
 	retrieve all dirs and files within rootPath to generate jstree node
 	'''
 	# sort folders/files in natural sorted format 
-	allFiles = sorted(os.listdir(parentPath), key=lambda item: (int(item.partition(' ')[0])
-                               			if item[0].isdigit() else float('inf'), item))
+	allFiles = sorted(os.listdir(parentPath), key=natural_keys)
+	
+#	allFiles = sorted(os.listdir(parentPath), key=lambda item: (int(item.partition(' ')[0])
+#                               			if item[0].isdigit() else float('inf'), item))
 #	print 'get all files within %s' % parentPath
 	
 	for file in allFiles:
