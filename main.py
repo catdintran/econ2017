@@ -26,14 +26,14 @@ def upload():
 
 @app.route('/download', methods=['POST'])
 def download():
-    idList = request.form.get('idList')
+    idList = request.form.get('idList').split[',']
     print 'calling download'
     print 'calling download'
     print 'calling download'
     print 'calling download'
     print idList
     print type(idList)
-    idList = ast.literal_eval(idList)
+#    idList = ast.literal_eval(idList)
     print idList
     if len(idList) > 1:
       util_process_idList(idList)       
