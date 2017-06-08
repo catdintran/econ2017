@@ -34,7 +34,7 @@ def process_pdftohtml(pdfPath):
 
 def parse_page_number(htmlPath):
 	folderName = htmlPath.split('/')[-2]	
-	output = util_get_parsed_dir() + folderName 
+	output = util_get_parsed_dir() + 'parsed_'+folderName 
 	pageNum = extract_page_number(htmlPath)
 	print 'processed %s' % htmlPath
 	print 'pageNum = %s' % pageNum
