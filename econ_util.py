@@ -41,7 +41,7 @@ def extract_page_number(htmlPath):
             	print num
 		print type(num)
 		if num:		
-     			return num[0].split()
+     			return num[0].split()[0]
 	     	else:
 			continue
 	return ''
