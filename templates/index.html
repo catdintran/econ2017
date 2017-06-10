@@ -19,7 +19,22 @@
   <button id="collapse_expand_btn">Expand</button>
   <button id="checkbox_btn">Hide Checkbox</button>
   <button id="download_btn">Download</button>
-<div id="container"></div>
+  
+<div class="left col">
+   <div id="container"></div>
+</div>
+<div class="right col">
+     <div class="header row">
+        View or edit something
+    </div>
+    <div class="body row scroll-y">
+        Here’s some content that can scroll vertically
+    </div>
+    <div class="footer row">
+        Some status message here
+    </div>
+ </div>
+
   
 <form id="submit_files" action="/upload" method="post" enctype="multipart/form-data">
   <input type="file" name="file[]" multiple >
