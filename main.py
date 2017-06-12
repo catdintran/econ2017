@@ -48,10 +48,9 @@ def populate_jstree():
 def display_file():
   print 'calling /display_file'
   filePath = request.json['id']
-  print filePath
-  print filePath
   with open(filePath, 'r') as f:
     text = f.read().replace('\n', '')
+  print text
   return text
 
 if __name__ == '__main__':
