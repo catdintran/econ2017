@@ -43,7 +43,15 @@ def populate_jstree():
   print 'calling /populate_jstree'
   rootNode = util_prepare_nodes()
   return jsonify(rootNode)
-  
+ 
+@app.route('/display_file', methods=['POST'])
+def display_file():
+  print 'calling /display_file'
+  filePath = request.form.('id')    
+  with open(filePath, 'r') as f:
+    text = f.read().replace('\n', '')
+  return text
+
 if __name__ == '__main__':
   app.run()
 
