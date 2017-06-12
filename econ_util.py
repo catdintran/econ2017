@@ -26,7 +26,7 @@ def util_process_pdf_file(pdfPath):
 	# change txt file to newfilename
 	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 	# change pdf filename to newfilename
-	newpdfPath = util_get_pdf_dir()+newfileName.replace('.txt','')
+	newpdfPath = util_get_pdf_dir()+newfileName.replace('.txt','.pdf')
 	subprocess.call('mv ' + pdfPath + ' ' + newpdfPath, shell=True)
 	# process pdf file to html/ and parsed/
 	process_pdftohtml(newpdfPath)
