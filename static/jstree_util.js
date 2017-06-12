@@ -41,10 +41,10 @@ $(document).ready(function(){
     $('#container').on("select_node.jstree", function (e, data) {
        if(data.node.children.length == 0){
          $.ajax({
+            type: 'POST',
             url: '/display_file',
             data: JSON.stringify({'id' : data.node.id}),
-            dataType: "json",
-            type: 'POST',
+            contentType: "application/json; charset=utf-8",            
             success: function(response) {
                 console.log(data);
                 $('#content').text(data);
