@@ -1,5 +1,9 @@
 /* Generic pane rules */
-#navbar {
+div#panel_container{
+    width: 100%;
+    margin: auto;
+}    
+div#navbar {
     margin: 0;
     padding: 0;
     width: 25%;
@@ -7,8 +11,11 @@
     position: fixed;
     height: 100%;
     overflow: auto;
+    flow: left;
 }
-
+div#content{
+    margin-left: 25%;    
+}    
 .wmd-view-topscroll, .wmd-view
 {
     overflow-x: auto;
