@@ -6,8 +6,12 @@
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;   
-}    
+}
+.ps-container .ps-scrollbar-x-rail {
+  top: 3px;
+}
 
+/*
 .wmd-view-topscroll, .wmd-view {
     overflow-x: scroll;
     overflow-y: scroll;
@@ -25,3 +29,4 @@
     width: 1000px; 
  
 }
+*/
