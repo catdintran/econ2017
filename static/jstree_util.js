@@ -31,7 +31,10 @@ $(document).ready(function(){
     });
     
   
-    $('#container').on("select_node.jstree", function (e, data) { console.log("node_id: " + data.node.id); });
+    $('#container').on("select_node.jstree", function (e, data) {
+       console.log(data.node);
+       //console.log("node_id: " + data.node.id); 
+    });
 
      
 });
