@@ -19,9 +19,16 @@ $(document).ready(function(){
       $('#processing_icon').show();
       return true;
     })
-//    $('.jstree-anchor.jstree-hovered').click(function() {
-//       console.log($(this));
-//    })
+    $(function(){
+        $(".wmd-view-topscroll").scroll(function(){
+            $(".wmd-view")
+                .scrollLeft($(".wmd-view-topscroll").scrollLeft());
+        });
+        $(".wmd-view").scroll(function(){
+            $(".wmd-view-topscroll")
+                .scrollLeft($(".wmd-view").scrollLeft());
+        });
+    });
  
 });
 
