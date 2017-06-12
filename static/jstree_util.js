@@ -35,7 +35,7 @@ $(document).ready(function(){
        if(data.node.children.length == 0){
          $.ajax({
             url: '/display_file',
-            data: data.node.id,
+            data: {'id' : data.node.id},
             type: 'POST',
             success: function(response) {
                 console.log(data);
