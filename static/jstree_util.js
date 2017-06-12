@@ -33,11 +33,19 @@ $(document).ready(function(){
   
     $('#container').on("select_node.jstree", function (e, data) {
        if(data.node.children.length == 0){
-          $.post('/display_file',   {   id: data.node.id }  )
-               .done(function( data ) {
-                  console.log(data);
-                  $('#content').text(data);
-                });
+         $.ajax({
+            url: '/display_file',
+            data: data.node.id,
+            type: 'POST',
+            success: function(response) {
+                console.log(data);
+                $('#content').text(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+          
        } 
     });
 
