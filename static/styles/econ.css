@@ -5,10 +5,8 @@
     width: 25%;
     background-color: #f1f1f1;
     position: fixed;
-    height: 100%;   
-}
-.navbar-container .navbar-container-x-rail {
-  top: 3px;
+    height: 100%;
+    overflow: auto;
 }
 
 /*
