@@ -46,8 +46,7 @@ $(document).ready(function(){
             data: JSON.stringify({'id' : data.node.id}),
             contentType: "application/json; charset=utf-8",            
             success: function(data) {
-                console.log(data);
-                $('#content').text(data);
+                $('#content').html(data);
             },
             error: function(error) {
                 console.log(error);
