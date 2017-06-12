@@ -31,10 +31,8 @@ $(document).ready(function(){
     });
     
   
-    $("#container").bind("hover_node.jstree", function(e, data){
-       var nodeId = jQuery.data(data.rslt.obj[0], "jstree").id;
-       console.log(nodeId);
-    });
+    $('#container').on("select_node.jstree", function (e, data) { console.log("node_id: " + data.node.id); });
+
      
 });
 
