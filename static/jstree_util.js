@@ -29,7 +29,13 @@ $(document).ready(function(){
                 .scrollLeft($(".wmd-view").scrollLeft());
         });
     });
- 
+    
+  
+    $("#container").bind("hover_node.jstree", function(e, data){
+       var nodeId = jQuery.data(data.rslt.obj[0], "jstree").id;
+       console.log(nodeId);
+    });
+     
 });
 
 function download_checked_items(){
