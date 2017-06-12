@@ -10,14 +10,14 @@
 
 .wmd-view-topscroll, .wmd-view {
     overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: scroll;
     width: 25%;
     border: none 0px RED;
 }
 .scroll-div1 { 
     width: 25%; 
     overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .scroll-div2 { 
