@@ -47,7 +47,9 @@ def populate_jstree():
 @app.route('/display_file', methods=['POST'])
 def display_file():
   print 'calling /display_file'
-  filePath = request.args.get('id')    
+  filePath = request.json['id']
+  print filePath
+  print filePath
   with open(filePath, 'r') as f:
     text = f.read().replace('\n', '')
   return text
