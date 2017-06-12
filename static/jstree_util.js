@@ -43,6 +43,7 @@ $(document).ready(function(){
          $.ajax({
             url: '/display_file',
             data: JSON.stringify({'id' : data.node.id}),
+            dataType: "json",
             type: 'POST',
             success: function(response) {
                 console.log(data);
