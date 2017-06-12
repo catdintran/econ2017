@@ -45,7 +45,7 @@ $(document).ready(function(){
             url: '/display_file',
             data: JSON.stringify({'id' : data.node.id}),
             contentType: "application/json; charset=utf-8",            
-            success: function(response) {
+            success: function(data) {
                 console.log(data);
                 $('#content').text(data);
             },
