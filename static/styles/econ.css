@@ -9,22 +9,19 @@
     overflow: auto;
 }
 
-/*
-.wmd-view-topscroll, .wmd-view {
-    overflow-x: scroll;
-    overflow-y: scroll;
-    width: 300px;
-    border: none 0px RED;
+.wmd-view-topscroll, .wmd-view
+{
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 1000px;
 }
 
+.wmd-view-topscroll
+{
+    height: 16px;
+}
 
-.scroll-div1 { 
-    width: 1000px; 
-    overflow-x: scroll;
-    overflow-y: scroll;
+.dynamic-div
+{
+    display: inline-block;
 }
-.scroll-div2 { 
-    width: 1000px; 
- 
-}
-*/
