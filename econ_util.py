@@ -32,7 +32,8 @@ def util_process_pdf_file(pdfPath):
 	process_pdftohtml(newpdfPath)
 	
 def process_pdftohtml(pdfPath):
-	filename = pdfPath.split('/')[-1].replace('.txt', '')	
+	filename = pdfPath.split('/')[-1].replace('.pdf', '')
+	filename = filename.replace('.txt', '')
 	output = util_get_html_dir() + filename
 	
 	# convert pdf to html folder
