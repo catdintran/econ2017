@@ -1,17 +1,20 @@
 /* Generic pane rules */
+.wmd-view-topscroll, .wmd-view {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 300px;
+    border: none 0px RED;
+}
 
-#navbar {
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+.wmd-view-topscroll { height: 20px; }
+.wmd-view { height: 200px; }
+.scroll-div1 { 
+    width: 1000px; 
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
-.Flipped,  .Flipped .Content
-{
-    transform:rotateX(180deg);
-    -ms-transform:rotateX(180deg); /* IE 9 */
-    -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+.scroll-div2 { 
+    width: 1000px; 
+    height:20px;
 }
+
