@@ -47,7 +47,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",            
             success: function(data) {
                 $('#content').empty();
-                $('#content').append(data);
+                $('#content').text(data);
             },
             error: function(error) {
                 console.log(error);
