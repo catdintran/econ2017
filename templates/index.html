@@ -9,22 +9,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script src="static/jstree_util.js?version={{version}}"></script>
   
-
-</head>  
-  
-<body>  
-  
+</head>    
+<body>    
 <div id="panel_container">
-  <!--
   <div class="wmd-view-topscroll">
-      <div class="scroll-div1">
+      <div class="scroll-div">
+          &nbsp;
       </div>
   </div>
-class="wmd-view"
-  -->
-  <div id="navbar" onscroll="navbar_scroll()"> 
-      
-          <div id="processing_icon" style="color:#0099ff; display:none"><i class="fa fa-cog fa-spin" style="font-size:24px"></i>
+  <div id="navbar" class="wmd-view">
+      <div class="dynamic-div">
+         <div id="processing_icon" style="color:#0099ff; display:none"><i class="fa fa-cog fa-spin" style="font-size:24px"></i>
             <span>Processing ...</span>
           </div>
           <button id="collapse_expand_btn">Expand</button>
@@ -35,8 +30,9 @@ class="wmd-view"
             <input type="file" name="file[]" multiple >
             <input type="submit">
           </form>
-    
+      </div>
   </div>
+  
   <div id="content" style="margin-left:25%;padding:1px 16px;height:1000px;">
       <h2>Fixed Full-height Side Nav</h2>
       <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
