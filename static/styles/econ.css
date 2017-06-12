@@ -1,13 +1,19 @@
 /* Generic pane rules */
+#navbar {
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;   
+}    
+
 .wmd-view-topscroll, .wmd-view {
     overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: scroll;
     width: 300px;
     border: none 0px RED;
 }
-
-.wmd-view-topscroll { height: 20px; }
-.wmd-view { height: 200px; }
 .scroll-div1 { 
     width: 1000px; 
     overflow-x: scroll;
@@ -15,6 +21,5 @@
 }
 .scroll-div2 { 
     width: 1000px; 
-    height:20px;
 }
 
