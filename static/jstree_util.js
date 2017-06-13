@@ -49,6 +49,7 @@ $(document).ready(function(){
                 console.log(data);
                 console.log($.type(data));
                 $('#content').empty();
+                $('#content').text(data);
             },
             error: function(error) {
                 console.log(error);
