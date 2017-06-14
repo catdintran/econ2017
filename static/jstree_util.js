@@ -64,11 +64,17 @@ $(document).ready(function(){
        // change V -> ^ and vice versa
        text = $(this).text();
        console.log(text);
-       updateText = text.indexOf('&#9650;') >= 0  ? text.replace('&#9650;', '&#9660;')   : text.replace('&#9660;', '&#9650;' );
-       console.log(updateText);
-       $(this).text(updateText);
+       if(text.indexOf('9650') >= 0){
+          $(this).text('');
+          $(this).text(text.split(' ')[0] + ' &#9660;');          
+       }else{
+          $(this).text('');
+          $(this).text(text.split(' ')[0] + ' &#9650;');   
+       }
+     
+  //     updateText = text.indexOf('&#9650;') >= 0  ? text.replace('&#9650;', '&#9660;')   : text.replace('&#9660;', '&#9650;' );
+  //     $(this).text(updateText);
        // slide child element
-       console.log('#' + $(this).data('child'));
        $('#' + $(this).data('child')).slideToggle();
        
     })
