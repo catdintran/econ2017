@@ -64,7 +64,7 @@ $(document).ready(function(){
        // change V -> ^ and vice versa
        text = $(this).text();
        console.log(text);
-       updateText = text.indexOf('^') >= 0  ? text.replace('^', 'V')   : text.replace('V', '^' );
+       updateText = text.indexOf('&#9650;') >= 0  ? text.replace('&#9650;', '&#9660;')   : text.replace('&#9660;', '&#9650;' );
        console.log(updateText);
        $(this).text(updateText);
        // slide child element
