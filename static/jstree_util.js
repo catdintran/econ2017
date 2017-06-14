@@ -53,12 +53,7 @@ $(document).ready(function(){
                 $('#content').text(data);
              */
                  $('#content').empty();
-                 $('#content').html("
-                    <object data="+data+" type='application/pdf' width='400' height='400'>
-                       <embed src="+data+" type='application/pdf' />
-                    </object>
-                 
-                 ")
+                 $('#content').html(" <object data="+data+" type='application/pdf' width='400' height='400'><embed src="+data+" type='application/pdf' /></object> ")
             },
             error: function(error) {
                 console.log(error);
