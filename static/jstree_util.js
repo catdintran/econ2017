@@ -48,12 +48,10 @@ $(document).ready(function(){
             success: function(data) {
                 console.log(data);
                 console.log($.type(data));
-             /*
+             
                 $('#content').empty();
-                $('#content').text(data);
-             */
-                 $('#content').empty();
-                 $('#content').html(" <object data="+data+" type='application/pdf' width='400' height='400'><embed src="+data+" type='application/pdf' /></object> ")
+              //  $('#content').text(data);
+             
             },
             error: function(error) {
                 console.log(error);
