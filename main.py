@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  v=randint(0,9999)
-  return render_template('index.html',version=v)  
+  v=randint(0,9999)  
+  return render_template('index.html',version=v, sources=os.listdir(util_get_pdf_dir()))  
 
 @app.route('/upload', methods=['POST'])
 def upload():
