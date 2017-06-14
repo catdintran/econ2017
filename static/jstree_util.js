@@ -50,7 +50,7 @@ $(document).ready(function(){
                 console.log($.type(data));
              
                 $('#content').empty();
-              //  $('#content').text(data);
+                $('#content').text(data);
              
             },
             error: function(error) {
