@@ -58,7 +58,18 @@ $(document).ready(function(){
           
        } 
     });
-
+ 
+    // slide_btn on click: change V -> ^ and call slide function
+    $('.slide_btn').click(function(){
+       // change V -> ^ and vice versa
+       text = $(this).text();
+       updateText = text.indexOf('^') ? 'V' : '^';
+       $(this).text(updateText);
+       // slide child element
+       console.log('#' + $(this).data('child'));
+       $('#' + $(this).data('child')).slideToggle();
+       
+    })
      
 });
 
