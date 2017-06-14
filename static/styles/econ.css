@@ -59,7 +59,7 @@ ul.pdfSources > li a {
     text-decoration: none;
 }
 ul.pdfSources > li:hover {
-    background-color: white;
+    background-color: #cceeff;
     color: orange;
 }
 
