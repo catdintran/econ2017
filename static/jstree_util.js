@@ -66,10 +66,10 @@ $(document).ready(function(){
        console.log(text);
        if(text.indexOf('9650') >= 0){
           $(this).text('');
-          $(this).text(text.split(' ')[0] + ' &#9660;');          
+          $(this).html(text.split(' ')[0] + ' &#9660;');          
        }else{
           $(this).text('');
-          $(this).text(text.split(' ')[0] + ' &#9650;');   
+          $(this).html(text.split(' ')[0] + ' &#9650;');   
        }
      
   //     updateText = text.indexOf('&#9650;') >= 0  ? text.replace('&#9650;', '&#9660;')   : text.replace('&#9660;', '&#9650;' );
