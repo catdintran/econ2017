@@ -63,7 +63,7 @@ $(document).ready(function(){
     $('.slide_btn').click(function(){
        // change V -> ^ and vice versa
        text = $(this).text();
-       updateText = text.indexOf('^') ? 'V' : '^';
+       updateText = text.indexOf('^') ? text.replace('^', 'V')  : text.replace('V','^');
        $(this).text(updateText);
        // slide child element
        console.log('#' + $(this).data('child'));
