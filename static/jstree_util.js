@@ -65,27 +65,33 @@ $(document).ready(function(){
     $('.slide_btn').click(function(){
        // change V -> ^ and vice versa
        text = $(this).text();
-  /*     
-       console.log(text);
-       if(text.indexOf('9650') >= 0){
-          $(this).text('');
-          updateText = text.split(' ')[0] + ' &#9660;';
-          console.log(updateText);
-          $(this).html(updateText);          
-       }else{
-          $(this).text('');
-          updateText = text.split(' ')[0] + ' &#9650;';
-          console.log(updateText);
-          $(this).html(updateText);
-       }
-  */   
+ 
        updateText = text.indexOf('^') >= 0  ? text.replace('^', 'v')   : text.replace('v', '^' );
        $(this).text(updateText);
        // slide child element
        $('#' + $(this).data('child')).slideToggle();
        
-    })
-     
+    });
+    $('.resource').click(function(){
+       resourceId = $(this).text();
+       $.ajax({
+            type: 'POST',
+            url: '/nltk_textPreprocess',
+            data: JSON.stringify({'id' : resourceId}),
+            contentType: "application/json; charset=utf-8",            
+            success: function(data) {
+                console.log(data);
+                console.log($.type(data));
+            /* 
+                $('#content').empty();
+                $('#content').text(data);
+             */
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 });
 
 
