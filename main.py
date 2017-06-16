@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory, send_file
 from werkzeug import secure_filename
 from econ_util import *
+from nltk_econ import *
 from random import randint
 import ast
 import os
@@ -60,7 +61,14 @@ def display_file():
     print text
     return text
   '''
-
+  @app.route('/nltk_textPreprocess', methods=['POST'])
+  def nltk_textPreprocess():
+    '''
+    return json file to template
+    '''
+    filePath =  util_get_txt_dir() + request.json['id'] + '.txt'
+    return jsonify(nltk_econ.textPreprocess(filePath))
+    
 if __name__ == '__main__':
   app.run()
 
