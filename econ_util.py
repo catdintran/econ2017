@@ -120,18 +120,19 @@ def extract_countryName_year_2nd(txtFile):
 	with open(txtFile, 'rb') as f:
 		lines = f.readlines()
 		for i, l in enumerate(lines):
-			if 0 < i < 10:
-				country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
+			if 0 < i < 20:
+			#	country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
+				country_year = re.findall( r'^(.*): (.*) ', str(l))
 				if country_year:
-					if len(country_year[0]) == 2:
-						fileName = country_year[0][0] + '--' + country_year[0][1]
-						fileName = fileName.upper()
-						break;
-					else: 
-						raise Exception('Encounter a different format, need to revise extracting algo')
-	print 'After extracting countryName, filename will become %s' % fileName
-	return txtFile, fileName
-				
+					text = str(l).split(':')
+					countryName = text[0]
+        				year = re.findall(r' (\d{4}) ', text[1])
+					fileName = countryName + '--' + year[0]	
+	if fileName:
+		print 'After extracting countryName, filename will become %s' % fileName
+		return txtFile, fileName
+	else:
+		raise Exception('Encounter a different format, need to revise extracting algo')
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
 	util_get_pdf_dir()
