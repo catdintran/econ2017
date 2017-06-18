@@ -70,7 +70,8 @@ def extract_page_number(htmlPath):
 	return ''
 	
 def extract_countryName_year(pdfPath):
-	filename = pdfPath.split('/')[-1].replace('.pdf', '')		
+	filename = pdfPath.split('/')[-1].replace('.pdf', '')
+	print 'Start extracting countryName for pdfFile %s' % filename
 	output = util_get_txt_dir() + filename
 	
 	# convert pdf to text file
