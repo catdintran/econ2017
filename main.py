@@ -63,15 +63,15 @@ def display_file():
       text = f.read().replace('\n', '')
     print text
     return text
-  '''
-  @app.route('/nltk_textPreprocess', methods=['POST'])
-  def nltk_textPreprocess():
+ '''
+ @app.route('/nltk_textPreprocess', methods=['POST'])
+ def nltk_textPreprocess():
     '''
     return json file to template
     '''
     filePath =  util_get_txt_dir() + request.json['id'] + '.txt'
     return jsonify(nltk_econ.textPreprocess(filePath))
-    
+ '''   
 if __name__ == '__main__':
   app.run()
 
