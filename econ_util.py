@@ -124,6 +124,8 @@ def extract_countryName_year_2nd(txtFile):
 			#	country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
 				country_year = re.findall( r'^(.*): (.*) ', str(l))
 				if country_year:
+					print 'Found match in the follwing line:'
+					print l
 					text = str(l).split(':')
 					countryName = text[0].replace(' ', '_')
         				year = re.findall(r' (\d{4}) ', text[1])
