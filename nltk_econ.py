@@ -1,3 +1,4 @@
+'''
 import nltk
 
 
@@ -14,4 +15,4 @@ def get_treebank_trained_tagger():
 def get_home_dir():
   return '/home/catdt_datascience/app/'
   
-  
+'''  
