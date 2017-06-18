@@ -103,7 +103,7 @@ def extract_countryName_year(pdfPath):
 					fileName = fileName.replace(' ', '_') + '.txt'
             		if i > 4:
                 		break
-						
+	print 'After extracting countryName, filename will become %s' % filename					
 	return output, fileName
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
