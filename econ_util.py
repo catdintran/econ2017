@@ -81,13 +81,16 @@ def extract_countryName_year(pdfPath):
         	fileName = ''
         	docDate = ''
 		for i, line in enumerate(lp):
-			print 'iterate over txt file'
+			print 'iterate over line#:%s' % str(i)
 			print line
 			if i == 0:
 			   	# print(line.replace('\n', ''))
 				print 'getting docDate'
 				print line
 				docDate = line.replace('\n', '')
+			if i in range(2, 4):
+				print 'gettiing countryName'
+				print line
 			if i in range(2, 4) and 'IMF' not in line:
               			# make sure line is not an empty line
                 		if line.strip():
