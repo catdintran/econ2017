@@ -121,8 +121,11 @@ def extract_countryName_year_2nd(txtFile):
 			if 0 < i < 10:
 				country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
 				if country_year:
-					fileName = '--'.join(country_year)
-					break;
+					if len(country_year[0] == 2):
+						fileName = country_year[0][0] + '--' + country_year[0][1]
+						break;
+					else: 
+						raise Exception('Encounter a different format, need to revise extracting algo')
 	print 'After extracting countryName, filename will become %s' % fileName
 	return txtFile, fileName
 				
