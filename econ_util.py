@@ -6,7 +6,7 @@ from itertools import islice
 
 def util_process_idList(fileList):
 	# clean tmp/ b4 moving files to folder
-	subprocess.call('rm *', shell=True)
+	subprocess.call('rm -rf', shell=True)
 	# mv requested files to tmp/
 	for file in fileList:
 		subprocess.call('mv ' + file + ' ' + util_get_tmp_dir(), shell=True)
@@ -85,6 +85,8 @@ def extract_countryName_year(pdfPath):
 			print line
 			if i == 0:
 			   	# print(line.replace('\n', ''))
+				print 'getting docDate'
+				print line
 				docDate = line.replace('\n', '')
 			if i in range(2, 4) and 'IMF' not in line:
               			# make sure line is not an empty line
@@ -92,6 +94,8 @@ def extract_countryName_year(pdfPath):
 					line = line.replace('\n', '')
 					line = line.replace('\'S', '')
 					line = line.replace('\xad', '')
+					print 'gettiing countryName'
+					print line
                     			fileName = line + '--' + docDate
 					fileName = fileName.replace(' ', '_') + '.txt'
             		if i > 4:
