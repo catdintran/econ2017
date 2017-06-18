@@ -107,7 +107,7 @@ def extract_countryName_year(pdfPath):
 		print 'After extracting countryName, filename will become %s' % fileName					
 		return output, fileName
 	else:
-		extract_countryName_year_2nd(output)
+		return extract_countryName_year_2nd(output)
 		
 def extract_countryName_year_2nd(txtFile):
 	'''
@@ -115,6 +115,7 @@ def extract_countryName_year_2nd(txtFile):
 	2nd attempt to extract country--year from txt file.
 	Will add 3rd, 4th .... if necessary
 	'''
+	print 'Starting extract_countryName_year 2nd try'
 	with open(txtFile, 'rb') as f:
 		lines = f.readlines()
 		for i, l in enumerate(lines):
