@@ -103,8 +103,29 @@ def extract_countryName_year(pdfPath):
 					fileName = fileName.replace(' ', '_') + '.txt'
             		if i > 4:
                 		break
-	print 'After extracting countryName, filename will become %s' % fileName					
-	return output, fileName
+	if fileName:			
+		print 'After extracting countryName, filename will become %s' % fileName					
+		return output, fileName
+	else:
+		extract_countryName_year_2nd(output)
+		
+def extract_countryName_year_2nd(txtFile):
+	'''
+	Due to different format of some pdf files
+	2nd attempt to extract country--year from txt file.
+	Will add 3rd, 4th .... if necessary
+	'''
+	with open(txtFile, 'rb') as f:
+		lines = f.readlines()
+		for i, l in enumerate(lines):
+			if 0 < i < 10:
+				country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
+				if country_year:
+					fileName = '--'.join(country_year)
+					break;
+	print 'After extracting countryName, filename will become %s' % fileName
+	return txtFile, fileName
+				
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
 	util_get_pdf_dir()
