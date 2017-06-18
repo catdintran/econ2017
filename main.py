@@ -22,6 +22,9 @@ def upload():
   
   for f in uploaded_files:
     filename = secure_filename(f.filename)
+    filename = filename.replace('-','')
+    filename = filename.replace('_','')
+
     f.save(util_get_pdf_dir() + filename)
     util_process_pdf_file(util_get_pdf_dir() + filename)
   return render_template('index.html',version=randint(0,9999))  
