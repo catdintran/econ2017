@@ -139,9 +139,9 @@ def extract_countryName_year_2nd(txtFile):
 		print 'After extracting countryName, filename will become %s' % fileName
 		return txtFile, fileName
 	else:
-		return extract_countryName_year_3rd(txtFile)
+		return extract_countryName_year_3rd(txtFile, countryName)
 	
-def extract_countryName_year_3rd(txtFile):
+def extract_countryName_year_3rd(txtFile, foundCountryName):
 	'''
 	Due to different format of some pdf files
 	3rd attempt to extract country--year from txt file.
@@ -167,7 +167,9 @@ def extract_countryName_year_3rd(txtFile):
 		print 'After extracting countryName, filename will become %s' % fileName
 		return txtFile, fileName
 	else:
-		raise Exception('Encounter a different format, need to revise extracting algo')
+		fileName = foundCountryName
+		return txtFile, fileName
+		#raise Exception('Encounter a different format, need to revise extracting algo')
 	
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
