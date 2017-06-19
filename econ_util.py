@@ -119,6 +119,7 @@ def extract_countryName_year_2nd(txtFile):
 	print 'Starting extract_countryName_year 2nd try'
 	with open(txtFile, 'rb') as f:
 		lines = f.readlines()
+		fileName = ''
 		for i, l in enumerate(lines):
 			if 0 < i < 20:
 			#	country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))
@@ -135,7 +136,32 @@ def extract_countryName_year_2nd(txtFile):
 		print 'After extracting countryName, filename will become %s' % fileName
 		return txtFile, fileName
 	else:
+		return extract_countryName_year_3rd(txtFile)
+	
+def extract_countryName_year_3rd(txtFile):
+	'''
+	Due to different format of some pdf files
+	3rd attempt to extract country--year from txt file.
+	Will add 3rd, 4th .... if necessary
+	'''
+	print 'Starting extract_countryName_year 2nd try'
+	with open(txtFile, 'rb') as f:
+		lines = f.readlines()
+		fileName = ''
+		for i, l in enumerate(lines):
+			if 0 < i < 5:		
+				found = re.search(r'\d{4} Article IV Consultation\\n', str(l))
+				if found:
+					text = str(l)
+					countryName = re.split(r'\d{4}', text)[0].strip().replace(' ', '_').upper()
+					year = re.findall(r'\d{4}', text)[0]
+					fileName = countryName+ '--' + year					
+	if fileName:
+		print 'After extracting countryName, filename will become %s' % fileName
+		return txtFile, fileName
+	else:
 		raise Exception('Encounter a different format, need to revise extracting algo')
+	
 def util_prepare_nodes():
 	rootNode = prepare_rootNode()
 	util_get_pdf_dir()
@@ -153,11 +179,7 @@ def get_all_dir_and_file(rootNode, parentPath):
 	'''
 	# sort folders/files in natural sorted format 
 	allFiles = sorted(os.listdir(parentPath), key=natural_keys)
-	
-#	allFiles = sorted(os.listdir(parentPath), key=lambda item: (int(item.partition(' ')[0])
-#                               			if item[0].isdigit() else float('inf'), item))
-#	print 'get all files within %s' % parentPath
-	
+		
 	for file in allFiles:
 		filePath = parentPath+'/'+file
 		if os.path.isdir(filePath):
