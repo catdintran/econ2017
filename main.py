@@ -31,7 +31,7 @@ def upload():
       util_process_pdf_file(util_get_pdf_dir() + filename)
     except Exception:
       errorList.append(filename)
-  return render_template('index.html',version=randint(0,9999), sources=sourceList, pdfError=errorList) 
+  return render_template('index.html',version=randint(0,9999), sources=get_source_list(), pdfError=errorList) 
 
 @app.route('/download', methods=['POST'])
 def download():
