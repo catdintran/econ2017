@@ -48,6 +48,15 @@
    <br/>   
   
   <div id="content">
+      <div id="pdfErrorList" class="dynamic-div">
+           <ul class="pdfError">
+              {% for error in pdfError %}
+              <li class="resource" style="width=100%"> 
+                 Error when processing this {{ pdf }}.              
+              </li>
+              {% endfor %}
+          </ul>
+      </div>
       <h1>Econ Global 2017</h1>
       <h5 class="instruct" >Use Navigation Bar on the left to upload/process/investigate file</h5>
     
