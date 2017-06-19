@@ -133,9 +133,7 @@ def extract_countryName_year_2nd(txtFile):
 					countryName = text[0].replace(' ', '_')
         				year = re.findall(r' (\d{4}) ', text[1])
 					if year:
-						fileName = countryName + '--' + year[0]
-					else:
-						fileName = countryName
+						fileName = countryName + '--' + year[0]					
 					break
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
