@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import zipfile
+from werkzeug import secure_filename
 from itertools import islice
 
 def util_process_idList(fileList):
@@ -23,6 +24,10 @@ def util_process_pdf_file(pdfPath):
 	'''
 	(path, pdfname) = os.path.split(pdfPath)
 	originPath, newfileName = extract_countryName_year(pdfPath)
+	
+	# remove special characters in filename
+	newfileName = secure_filename(newfileName)
+	
 	# change txt file to newfilename
 	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 	# change pdf filename to newfilename
