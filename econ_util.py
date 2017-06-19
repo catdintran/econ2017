@@ -25,11 +25,8 @@ def util_process_pdf_file(pdfPath):
 	5/extract pageNum and save new files to parsed/
 	'''
 	(path, pdfname) = os.path.split(pdfPath)
-	originPath, newfileName = extract_countryName_year(pdfPath)
+	newfileName = extract_countryName_year(pdfPath)	
 	
-	
-	# change txt file to newfilename
-#	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 	# change pdf filename to newfilename
 	newpdfPath = util_get_pdf_dir()+newfileName.replace('.txt','.pdf')
 	subprocess.call('mv ' + pdfPath + ' ' + newpdfPath, shell=True)
@@ -83,54 +80,61 @@ def extract_countryName_year(pdfPath):
 		with open(util_get_countryCodes()) as json_data:
     			countryCodes = json.load(json_data)
 			
-	# the upload fileName is code and use it to get value from countryCodes		
-	newFileName = countryCodes[filename]
-	# remove special characters in filename
-	newFileName = secure_filename(newFileName)
+	# the upload fileName is code and use it to get value from countryCodes
+	if filename in countryCodes:
+		newFileName = countryCodes[filename]
+		# remove special characters in filename
+		newFileName = secure_filename(newFileName)
 	
-	# convert pdf to text file using the extracted countryName as fileName
-	output = util_get_txt_dir() + newFileName
-	subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
-	
-	return output, newFileName
-	
-	'''
-	with open(output, 'rb') as fp:
-		lp = fp.readlines()
-        	fileName = ''
-        	docDate = ''
-		for i, line in enumerate(lp):
-			print 'iterate over line#:%s' % str(i)
-			print line
-			if i == 0:
-			   	# print(line.replace('\n', ''))
-				print 'getting docDate'
+		# convert pdf to text file using the extracted countryName as fileName
+		output = util_get_txt_dir() + newFileName
+		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
+		return output, newFileName
+	else:
+		# save pdf to txt file for extracting
+		output = util_get_txt_dir() + filename
+		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
+		
+		
+		with open(output, 'rb') as fp:
+			lp = fp.readlines()
+			fileName = ''
+			docDate = ''
+			for i, line in enumerate(lp):
+				print 'iterate over line#:%s' % str(i)
 				print line
-				docDate = line.replace('\n', '')
-			if i in range(2, 4):
-				print 'gettiing countryName'
-				print line
-			if i in range(2, 4) and 'IMF' not in line:
-              			# make sure line is not an empty line
-                		if line.strip():
-					line = line.replace('\n', '').replace('\'S', '').replace('\xad', '')
-					#line = line.replace('\'S', '')
-					#line = line.replace('\xad', '')
+				if i == 0:
+					# print(line.replace('\n', ''))
+					print 'getting docDate'
+					print line
+					docDate = line.replace('\n', '')
+				if i in range(2, 4):
 					print 'gettiing countryName'
 					print line
-                    			fileName = line + '--' + docDate
-					fileName = fileName.replace(' ', '_') + '.txt'
-            		if i > 4:
-                		break
-	if fileName:			
-		print 'After extracting countryName, filename will become %s' % fileName					
-		return output, fileName
-	else:
-		(output, fileName) = extract_countryName_year_2nd(output)
-		fileName = fileName.replace('\n', '').replace('\'S', '').replace('\xad', '')
-		return output, fileName
-	'''
+				if i in range(2, 4) and 'IMF' not in line:
+					# make sure line is not an empty line
+					if line.strip():
+						line = line.replace('\n', '').replace('\'S', '').replace('\xad', '')
+						#line = line.replace('\'S', '')
+						#line = line.replace('\xad', '')
+						print 'gettiing countryName'
+						print line
+						fileName = line + '--' + docDate
+						fileName = fileName.replace(' ', '_') + '.txt'
+				if i > 4:
+					break
+		if fileName:			
+			print 'After extracting countryName, filename will become %s' % fileName		
+		else:
+			(output, fileName) = extract_countryName_year_2nd(output)
+			fileName = fileName.replace('\n', '').replace('\'S', '').replace('\xad', '')
+			
+		# change txt file to newfilename
+		fileName = secure_filename(fileName)
+		subprocess.call('mv ' + output + ' ' + util_get_txt_dir()+fileName, shell=True)			
 		
+		return fileName
+	
 def extract_countryName_year_2nd(txtFile):
 	'''
 	Due to different format of some pdf files
@@ -156,7 +160,7 @@ def extract_countryName_year_2nd(txtFile):
 					break
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
-		return txtFile, fileName
+		return fileName
 	else:
 		return extract_countryName_year_3rd(txtFile, countryName)
 	
@@ -184,10 +188,10 @@ def extract_countryName_year_3rd(txtFile, foundCountryName):
 					break					
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
-		return txtFile, fileName
+		return fileName
 	else:
 		fileName = foundCountryName
-		return txtFile, fileName
+		return fileName
 		#raise Exception('Encounter a different format, need to revise extracting algo')
 	
 def util_prepare_nodes():
