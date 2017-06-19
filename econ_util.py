@@ -132,7 +132,10 @@ def extract_countryName_year_2nd(txtFile):
 					text = str(l).split(':')
 					countryName = text[0].replace(' ', '_')
         				year = re.findall(r' (\d{4}) ', text[1])
-					fileName = countryName + '--' + year[0]
+					if year:
+						fileName = countryName + '--' + year[0]
+					else:
+						fileName = countryName
 					break
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
@@ -157,7 +160,10 @@ def extract_countryName_year_3rd(txtFile):
 					text = str(l)
 					countryName = re.split(r'\d{4}', text)[0].strip().replace(' ', '_').upper()
 					year = re.findall(r'\d{4}', text)[0]
-					fileName = countryName+ '--' + year
+					if year:
+						fileName = countryName+ '--' + year
+					else:	
+						fileName = countryName
 					break					
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
