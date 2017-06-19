@@ -6,7 +6,7 @@ import json
 from werkzeug import secure_filename
 from itertools import islice
 
-countryCodes = {}
+
 def util_process_idList(fileList):
 	# clean tmp/ b4 moving files to folder
 	subprocess.call('rm -rf', shell=True)
@@ -76,12 +76,12 @@ def extract_countryName_year(pdfPath):
 	print 'Start extracting countryName for pdfFile %s' % filename
 	
 	# load the json file which contains {'code' : 'countryNameYear'}
-	if not countryCodes:
-		with open(util_get_countryCodes()) as json_data:
-    			countryCodes = json.load(json_data)
+	with open(util_get_countryCodes()) as json_data:
+    		countryCodes = json.load(json_data)
 			
 	# the upload fileName is code and use it to get value from countryCodes
 	if filename in countryCodes:
+		print 'getting countryName from countryCodes'
 		newFileName = countryCodes[filename]
 		# remove special characters in filename
 		newFileName = secure_filename(newFileName)
@@ -91,6 +91,7 @@ def extract_countryName_year(pdfPath):
 		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
 		return output, newFileName
 	else:
+		print 'failed extracting from countryCodes proceed to algo extracting'
 		# save pdf to txt file for extracting
 		output = util_get_txt_dir() + filename
 		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
