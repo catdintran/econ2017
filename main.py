@@ -21,9 +21,7 @@ def upload():
   uploaded_files = request.files.getlist("file[]")
   
   for f in uploaded_files:
-    filename = secure_filename(f.filename)
-    filename = filename.replace('-','')
-    filename = filename.replace('_','')
+    filename = secure_filename(f.filename) 
 
     f.save(util_get_pdf_dir() + filename)
     errorList = []
