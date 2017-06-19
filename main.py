@@ -57,10 +57,10 @@ def populate_jstree():
 def display_file():
   print 'calling /display_file'
   filePath = request.json['id']
-#  if '.pdf' in filePath:
-#     return 'Can Not View pdf at this moment.'
-#  else:
-  return send_file(filePath)
+  if '.pdf' in filePath:
+     return 'Can Not View pdf at this moment.'
+  else:
+     return send_file(filePath)
 
 def get_source_list():
   return [e.replace('.pdf', '') for e in os.listdir(util_get_pdf_dir())]
