@@ -6,6 +6,10 @@ import json
 from werkzeug import secure_filename
 from itertools import islice
 
+def global_countryCodes():
+	global countryCodes
+        with open(util_get_countryCodes(), 'rb') as json_data:
+             countryCodes = json.load(json_data)
 
 def util_process_idList(fileList):
 	# clean tmp/ b4 moving files to folder
@@ -76,27 +80,30 @@ def extract_countryName_year(pdfPath):
 	print 'Start extracting countryName for pdfFile %s' % filename
 	
 	# load the json file which contains {'code' : 'countryNameYear'}
-	with open(util_get_countryCodes()) as json_data:
-    		countryCodes = json.load(json_data)
-			
+	global_countryCodes()
+	
 	# the upload fileName is code and use it to get value from countryCodes
 	if filename in countryCodes:
+		print '%s is in countryCodes' % filename
 		print 'getting countryName from countryCodes'
 		newFileName = countryCodes[filename]
 		# remove special characters in filename
 		newFileName = secure_filename(newFileName)
+		print 'After extracting from countryCodes, newFileName will be %s' % newFileName
+
 	
 		# convert pdf to text file using the extracted countryName as fileName
 		output = util_get_txt_dir() + newFileName
-		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
-		return output, newFileName
+		print util_xpdftotext() + ' ' + pdfPath + ' ' + output
+		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output, shell=True)
+		return newFileName
 	else:
 		print 'failed extracting from countryCodes proceed to algo extracting'
 		# save pdf to txt file for extracting
 		output = util_get_txt_dir() + filename
-		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
 		
-		
+		subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output, shell=True)
+				
 		with open(output, 'rb') as fp:
 			lp = fp.readlines()
 			fileName = ''
@@ -127,8 +134,8 @@ def extract_countryName_year(pdfPath):
 		if fileName:			
 			print 'After extracting countryName, filename will become %s' % fileName		
 		else:
-			(output, fileName) = extract_countryName_year_2nd(output)
-			fileName = fileName.replace('\n', '').replace('\'S', '').replace('\xad', '')
+			fileName = extract_countryName_year_2nd(output)
+			
 			
 		# change txt file to newfilename
 		fileName = secure_filename(fileName)
@@ -146,6 +153,7 @@ def extract_countryName_year_2nd(txtFile):
 	with open(txtFile, 'rb') as f:
 		lines = f.readlines()
 		fileName = ''
+		countryName = ''
 		for i, l in enumerate(lines):
 			if 0 < i < 20:
 			#	country_year = re.findall( r'^(.*): (\d{4}) .*', str(l))

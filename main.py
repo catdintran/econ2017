@@ -3,6 +3,7 @@ from werkzeug import secure_filename
 from econ_util import *
 from nltk_econ import *
 from random import randint
+import traceback
 import ast
 import os
 
@@ -18,17 +19,21 @@ def index():
 
 @app.route('/upload', methods=['POST'])
 def upload():
+  print 'A request object'
+  print request
   uploaded_files = request.files.getlist("file[]")
-  
+  errorList = [] 
   for f in uploaded_files:
     filename = secure_filename(f.filename) 
 
     f.save(util_get_pdf_dir() + filename)
-    errorList = []
     try:
       util_process_pdf_file(util_get_pdf_dir() + filename)
-    except Exception:
+    except Exception, e:
+      print e
+      traceback.print_exc()
       errorList.append(filename)
+ 
   return render_template('index.html',version=randint(0,9999), sources=get_source_list(), pdfError=errorList) 
 
 @app.route('/download', methods=['POST'])

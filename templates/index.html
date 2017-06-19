@@ -51,8 +51,8 @@
       <div id="pdfErrorList" class="dynamic-div">
            <ul class="pdfError">
               {% for error in pdfError %}
-              <li class="resource" style="width=100%"> 
-                 Error when processing this {{ pdf }}.              
+              <li class="resource" style="width:100%; color:red;"> 
+                 Error when processing this {{ error }}.              
               </li>
               {% endfor %}
           </ul>
