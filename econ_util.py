@@ -2,9 +2,11 @@ import os
 import re
 import subprocess
 import zipfile
+import json
 from werkzeug import secure_filename
 from itertools import islice
 
+countryCodes = {}
 def util_process_idList(fileList):
 	# clean tmp/ b4 moving files to folder
 	subprocess.call('rm -rf', shell=True)
@@ -25,11 +27,9 @@ def util_process_pdf_file(pdfPath):
 	(path, pdfname) = os.path.split(pdfPath)
 	originPath, newfileName = extract_countryName_year(pdfPath)
 	
-	# remove special characters in filename
-	newfileName = secure_filename(newfileName)
 	
 	# change txt file to newfilename
-	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
+#	subprocess.call('mv ' + originPath + ' ' + util_get_txt_dir()+newfileName, shell=True)
 	# change pdf filename to newfilename
 	newpdfPath = util_get_pdf_dir()+newfileName.replace('.txt','.pdf')
 	subprocess.call('mv ' + pdfPath + ' ' + newpdfPath, shell=True)
@@ -77,11 +77,24 @@ def extract_page_number(htmlPath):
 def extract_countryName_year(pdfPath):
 	filename = pdfPath.split('/')[-1].replace('.pdf', '')
 	print 'Start extracting countryName for pdfFile %s' % filename
-	output = util_get_txt_dir() + filename
 	
-	# convert pdf to text file
-	subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output, shell=True)
+	# load the json file which contains {'code' : 'countryNameYear'}
+	if not countryCodes:
+		with open(util_get_countryCodes()) as json_data:
+    			countryCodes = json.load(json_data)
+			
+	# the upload fileName is code and use it to get value from countryCodes		
+	newFileName = countryCodes[filename]
+	# remove special characters in filename
+	newFileName = secure_filename(newFileName)
 	
+	# convert pdf to text file using the extracted countryName as fileName
+	output = util_get_txt_dir() + newFileName
+	subprocess.call(util_xpdftotext() + ' ' + pdfPath + ' ' + output + '.txt', shell=True)
+	
+	return output, newFileName
+	
+	'''
 	with open(output, 'rb') as fp:
 		lp = fp.readlines()
         	fileName = ''
@@ -116,6 +129,7 @@ def extract_countryName_year(pdfPath):
 		(output, fileName) = extract_countryName_year_2nd(output)
 		fileName = fileName.replace('\n', '').replace('\'S', '').replace('\xad', '')
 		return output, fileName
+	'''
 		
 def extract_countryName_year_2nd(txtFile):
 	'''
@@ -253,6 +267,10 @@ def util_get_tmp_dir():
 def util_get_save_data_dir():
         directory = check_if_not_exist('/home/catdt_datascience/app/saved_data/')
 	return directory
+
+def util_get_countryCodes():
+	return '/home/catdt_datascience/app/countryCodes.json'
+
 def get_immediate_subdirectories(a_dir):
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
