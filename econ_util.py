@@ -95,9 +95,9 @@ def extract_countryName_year(pdfPath):
 			if i in range(2, 4) and 'IMF' not in line:
               			# make sure line is not an empty line
                 		if line.strip():
-					line = line.replace('\n', '')
-					line = line.replace('\'S', '')
-					line = line.replace('\xad', '')
+					line = line.replace('\n', '').replace('\'S', '').replace('\xad', '')
+					#line = line.replace('\'S', '')
+					#line = line.replace('\xad', '')
 					print 'gettiing countryName'
 					print line
                     			fileName = line + '--' + docDate
@@ -108,7 +108,9 @@ def extract_countryName_year(pdfPath):
 		print 'After extracting countryName, filename will become %s' % fileName					
 		return output, fileName
 	else:
-		return extract_countryName_year_2nd(output)
+		(output, fileName) = extract_countryName_year_2nd(output)
+		fileName = fileName.replace('\n', '').replace('\'S', '').replace('\xad', '')
+		return output, fileName
 		
 def extract_countryName_year_2nd(txtFile):
 	'''
