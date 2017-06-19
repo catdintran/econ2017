@@ -57,21 +57,21 @@ def display_file():
 #     return 'Can Not View pdf at this moment.'
 #  else:
   return send_file(filePath)
-  '''
+'''
   else:
     with open(filePath, 'r') as f:
       text = f.read().replace('\n', '')
     print text
     return text
- '''
- @app.route('/nltk_textPreprocess', methods=['POST'])
- def nltk_textPreprocess():
-    '''
-    return json file to template
-    '''
+'''
+
+'''
+@app.route('/nltk_textPreprocess', methods=['POST'])
+def nltk_textPreprocess():
+    
     filePath =  util_get_txt_dir() + request.json['id'] + '.txt'
     return jsonify(nltk_econ.textPreprocess(filePath))
- '''   
+'''   
 if __name__ == '__main__':
   app.run()
 

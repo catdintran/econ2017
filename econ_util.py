@@ -144,18 +144,19 @@ def extract_countryName_year_3rd(txtFile):
 	3rd attempt to extract country--year from txt file.
 	Will add 3rd, 4th .... if necessary
 	'''
-	print 'Starting extract_countryName_year 2nd try'
+	print 'Starting extract_countryName_year 3rd try'
 	with open(txtFile, 'rb') as f:
 		lines = f.readlines()
 		fileName = ''
 		for i, l in enumerate(lines):
-			if 0 < i < 5:		
-				found = re.search(r'\d{4} Article IV Consultation\\n', str(l))
+			if 0 < i < 10:		
+				found = re.search(r'\d{4} Article IV Consultation', str(l))
 				if found:
 					text = str(l)
 					countryName = re.split(r'\d{4}', text)[0].strip().replace(' ', '_').upper()
 					year = re.findall(r'\d{4}', text)[0]
-					fileName = countryName+ '--' + year					
+					fileName = countryName+ '--' + year
+					break					
 	if fileName:
 		print 'After extracting countryName, filename will become %s' % fileName
 		return txtFile, fileName
