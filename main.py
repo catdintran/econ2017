@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  v=randint(0,9999)  
-  sourceList = [e.replace('.pdf', '') for e in os.listdir(util_get_pdf_dir())]
+  v=randint(0,9999)
+  sourceList = get_source_list()
   return render_template('index.html',version=v, sources=sourceList)  
 
 @app.route('/upload', methods=['POST'])
@@ -26,8 +26,12 @@ def upload():
     filename = filename.replace('_','')
 
     f.save(util_get_pdf_dir() + filename)
-    util_process_pdf_file(util_get_pdf_dir() + filename)
-  return render_template('index.html',version=randint(0,9999))  
+    errorList = []
+    try:
+      util_process_pdf_file(util_get_pdf_dir() + filename)
+    except Exception:
+      errorList.append(filename)
+  return render_template('index.html',version=randint(0,9999), sources=sourceList, pdfError=errorList) 
 
 @app.route('/download', methods=['POST'])
 def download():
@@ -57,6 +61,10 @@ def display_file():
 #     return 'Can Not View pdf at this moment.'
 #  else:
   return send_file(filePath)
+
+def get_source_list():
+  return [e.replace('.pdf', '') for e in os.listdir(util_get_pdf_dir())]
+
 '''
   else:
     with open(filePath, 'r') as f:
